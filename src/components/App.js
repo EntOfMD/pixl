@@ -1,10 +1,13 @@
 import React from 'react';
+import axios from 'axios';
+
 import SearchBar from './SearchBar';
 
 class App extends React.Component {
 	onSearchSubmit(term) {
 		//props flow downstream to child from parent. this function helps break that and bring props to parent from child
-		console.log(`${term} was found thru props!`);
+
+		axios.get(`https://api.unsplash.com/search/photos`, {});
 	}
 
 	render() {
