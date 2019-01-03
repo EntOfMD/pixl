@@ -6,15 +6,16 @@ class SearchBar extends React.Component {
 	render() {
 		return (
 			<div className="ui segment">
-				<div className="ui form">
-					<input
-						className="field"
-						type="text"
-						placeholder="Type a keyword to search!"
-						value={this.state.term}
-						onChange={(e) => this.setState({ term: e.target.value })}
-					/>
-				</div>
+				<form className="ui form">
+					<div className="field">
+						<input
+							type="text"
+							placeholder="Type a keyword to search!"
+							value={this.state.term}
+							onChange={(e) => this.setState({ term: e.target.value })}
+						/>
+					</div>
+				</form>
 			</div>
 		);
 	}
