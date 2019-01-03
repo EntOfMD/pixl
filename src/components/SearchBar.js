@@ -3,9 +3,11 @@ import React from 'react';
 class SearchBar extends React.Component {
 	state = { term: '' };
 
-	onFormSubmit(event) {
+	onFormSubmit = (event) => {
+		//by using arrow functions, it binds auto
 		event.preventDefault();
-	}
+		console.log(this.state.term);
+	};
 	render() {
 		return (
 			<div className="ui segment">
@@ -19,7 +21,6 @@ class SearchBar extends React.Component {
 						/>
 					</div>
 				</form>
-				<div>{this.state.term}</div>
 			</div>
 		);
 	}
