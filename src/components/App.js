@@ -4,7 +4,7 @@ import axios from 'axios';
 import SearchBar from './SearchBar';
 
 class App extends React.Component {
-	state = { images: [] };
+	state = { images: [], imageIds: [] };
 
 	onSearchSubmit = async (term) => {
 		//props flow downstream to child from parent. this function helps break that and bring props to parent from child
@@ -18,7 +18,13 @@ class App extends React.Component {
 			},
 		});
 
-		this.setState({ images: response.data.results });
+		this.setState({
+			images: response.data.results,
+			imageIds: response.data.results.map((id) => {
+				this.setState({ imageIds: id.id });
+				console.log(this.state.imageIds);
+			}),
+		});
 	};
 
 	render() {
@@ -26,7 +32,10 @@ class App extends React.Component {
 			<div className="ui container" style={{ marginTop: '1vh' }}>
 				{' '}
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
-				<h2 className="ui header imageLength">Found: {this.state.images.length} images</h2>
+				<h2 className="ui header imageLength">
+					Found: {this.state.images.length} images
+					<p className="image ui">{this.state.image}</p>
+				</h2>
 			</div>
 		);
 	}
