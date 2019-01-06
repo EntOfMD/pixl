@@ -6,7 +6,7 @@ import SearchBar from './SearchBar';
 class App extends React.Component {
 	state = { images: [] };
 
-	async onSearchSubmit(term) {
+	onSearchSubmit = async (term) => {
 		//props flow downstream to child from parent. this function helps break that and bring props to parent from child
 
 		const response = await axios.get(`https://api.unsplash.com/search/photos`, {
@@ -19,7 +19,7 @@ class App extends React.Component {
 		});
 
 		this.setState({ images: response.data.results });
-	}
+	};
 
 	render() {
 		return (
