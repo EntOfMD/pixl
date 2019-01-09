@@ -1,5 +1,6 @@
 import React from 'react';
 import unsplash from '../api/unsplash';
+import ImageList from './imageList';
 
 import SearchBar from './SearchBar';
 
@@ -17,13 +18,6 @@ class App extends React.Component {
 
 		this.setState({
 			images: response.data.results,
-			imageIds: response.data.results.map((id) => {
-				this.setState({ imageIds: id.id });
-				console.log(this.state.imageIds);
-			}),
-			/* imageURL: this.state.imageIds.map((x) => {
-				this.setState({ imageURL: `https://api.unsplash.com/search/photos/${this.state.imageIds[x]}` });
-			}), */
 		});
 	};
 
@@ -32,10 +26,10 @@ class App extends React.Component {
 			<div className="ui container" style={{ marginTop: '1vh' }}>
 				{' '}
 				<SearchBar onSubmit={this.onSearchSubmit.bind(this)} />
-				<h2 className="ui header imageLength">
-					Found: {this.state.images.length} images{' '}
-					<img src={`https://api.unsplash.com/search/photos/${this.state.imageIds[0]}`} alt={`none`} />
-				</h2>
+				<h2 className="ui header imageLength">Found: {this.state.images.length}</h2>
+				<div>
+					<ImageList images={this.state.images} />
+				</div>
 			</div>
 		);
 	}
